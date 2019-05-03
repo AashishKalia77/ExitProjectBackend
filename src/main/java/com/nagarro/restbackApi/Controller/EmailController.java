@@ -48,17 +48,17 @@ public class EmailController {
 
                 msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(details.getEmail()));
                 msg.setSubject("You are Registered");
-                msg.setContent("Aditya email", "text/html");
+                msg.setContent("Registration email", "text/html");
                 msg.setSentDate(new Date());
 
                 MimeBodyPart messageBodyPart = new MimeBodyPart();
-                messageBodyPart.setContent("your email: aditya, password: khanijow", "text/html");
+                messageBodyPart.setContent("You are Registered with password : "+details.getPassword(), "text/html");
 
                 Multipart multipart = new MimeMultipart();
                 multipart.addBodyPart(messageBodyPart);
                 MimeBodyPart attachPart = new MimeBodyPart();
 
-                attachPart.attachFile("C:\\Users\\aashishkalia\\Pictures\\Capture.PNG");
+        
                 multipart.addBodyPart(attachPart);
                 msg.setContent(multipart);
                 Transport.send(msg);   

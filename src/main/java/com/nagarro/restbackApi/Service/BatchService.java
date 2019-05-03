@@ -14,11 +14,19 @@ public class BatchService {
 	@Autowired
 	private BatchRepository batchRepository;
 
+	
+	/**
+	 * @returns list of batches 
+	 */
 	public List<Batch> getAllBatches() {
 		// TODO Auto-generated method stub
 		return batchRepository.findAll();
 	}
-
+	
+	
+	/**
+	 * adds new batch to database
+	 */
 	public void addBatch(Batch batch) {
 		// TODO Auto-generated method stub
 		if (batch.getBatchId().equals("") || batch.getBatchId() == null) {
@@ -28,6 +36,9 @@ public class BatchService {
 
 	}
 
+	/**
+	 *updates batch details for the batch id
+	 */
 	public void updateBatch(String id, Batch newBatch) {
 		// TODO Auto-generated method stub
 		System.out.println("in update batch");
@@ -49,14 +60,21 @@ public class BatchService {
 		}
 
 	}
-
+	
+	
+	/**
+	 deletes batch by batch id
+	 */
 	public void deleteBatch(String id) {
 		// TODO Auto-generated method stub
 		Batch old = batchRepository.getOne(id);
 		System.out.println();
 		batchRepository.delete(old);
 	}
-
+	
+	/**
+	 * @returns batch by id
+	 */
 	public Batch getBatchById(String id) {
 		// TODO Auto-generated method stub
 		return batchRepository.findById(id).get();

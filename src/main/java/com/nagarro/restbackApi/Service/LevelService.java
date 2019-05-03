@@ -14,52 +14,64 @@ public class LevelService {
 
 	@Autowired
 	private LevelRepository levelRepository;
-	Logger  logger= Logger.getLogger(LevelService.class.getName());
-	
+	Logger logger = Logger.getLogger(LevelService.class.getName());
+
+	/**
+	 * @returns list of all levels
+	 */
 	public List<Level> getAllLevels() {
 		return levelRepository.findAll();
 	}
 
+	/**
+	 * adds new level to database
+	 */
 	public void addLevel(Level level) {
-	logger.info("reached in service");
-		if (level.getLevelId()== null || level.getLevelId().equals("")) {
+		logger.info("reached in service");
+		if (level.getLevelId() == null || level.getLevelId().equals("")) {
 			level.setLevelId(level.generateLevelId());
 		}
 		levelRepository.save(level);
-		
+
 	}
 
-	public void updateLevel(String id,Level newLevel) {
-		Level old=levelRepository.getOne(id);
-		if(old!=null) 
-		{
-			if(old.getLevelName()==""){
+	/**
+	 * updates level details by level id
+	 */
+	public void updateLevel(String id, Level newLevel) {
+		Level old = levelRepository.getOne(id);
+		if (old != null) {
+			if (old.getLevelName() == "") {
 				old.setLevelName(newLevel.getLevelName());
 			}
-			
-			if(old.getLevelDesc()=="") {
+
+			if (old.getLevelDesc() == "") {
 				old.setLevelDesc(newLevel.getLevelName());
 			}
-			
-			if(old.getQualifyPoints()==0) {
+
+			if (old.getQualifyPoints() == 0) {
 				old.setQualifyPoints(newLevel.getQualifyPoints());
 			}
 			levelRepository.save(old);
-		}
-		else {
+		} else {
 			System.out.println("Error ");
 		}
-		
+
 	}
 
+	/**
+	 * deletes level by batch id
+	 */
 	public void deleteLevel(String id) {
 		// TODO Auto-generated method stub
-		Level old=levelRepository.getOne(id);
+		Level old = levelRepository.getOne(id);
 		levelRepository.delete(old);
 	}
 
-	public Level getLevelById(String id ) {
-		System.out.println("hello");
+	/**
+	 * fetches level by id
+	 */
+	public Level getLevelById(String id) {
 		return levelRepository.findById(id).get();
 	}
 

@@ -41,15 +41,16 @@ public class LevelService {
 	public void updateLevel(String id, Level newLevel) {
 		Level old = levelRepository.getOne(id);
 		if (old != null) {
-			if (old.getLevelName() == "") {
+			if (newLevel.getLevelName() != null && !newLevel.getLevelName().equals("")) {
 				old.setLevelName(newLevel.getLevelName());
 			}
 
-			if (old.getLevelDesc() == "") {
-				old.setLevelDesc(newLevel.getLevelName());
+			if (newLevel.getLevelDesc() != null && !newLevel.getLevelDesc().equals("")) {
+			
+				old.setLevelDesc(newLevel.getLevelDesc());
 			}
 
-			if (old.getQualifyPoints() == 0) {
+			if (newLevel.getQualifyPoints()!= 0) {
 				old.setQualifyPoints(newLevel.getQualifyPoints());
 			}
 			levelRepository.save(old);

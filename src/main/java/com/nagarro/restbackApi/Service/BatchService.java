@@ -44,14 +44,14 @@ public class BatchService {
 		System.out.println("in update batch");
 		Batch old = batchRepository.getOne(id);
 		if (old != null) {
-			if (newBatch.getTechnology() == "") {
-				old.setTechnology(old.getTechnology());
+			if (newBatch.getTechnology() !=null  && !newBatch.getTechnology().equals("")) {
+				old.setTechnology(newBatch.getTechnology());
 			}
-			if (newBatch.getYear() == "") {
-				old.setYear(old.getYear());
+			if (newBatch.getYear()!=null &&  !newBatch.getYear().equals("")) {
+				old.setYear(newBatch.getYear());
 			}
-			if (newBatch.getBatchDescription() == "") {
-				old.setBatchDescription(old.getBatchDescription());
+			if ( newBatch.getBatchDescription()!=null  &&  !newBatch.getBatchDescription().equals("")) {
+				old.setBatchDescription(newBatch.getBatchDescription());
 
 			}
 			batchRepository.save(old);

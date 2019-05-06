@@ -6,7 +6,6 @@ import java.util.Properties;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
-import javax.mail.Multipart;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
@@ -14,7 +13,6 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
 
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,19 +46,12 @@ public class EmailController {
 
                 msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(details.getEmail()));
                 msg.setSubject("You are Registered");
-                msg.setContent("Registration email", "text/html");
+                msg.setContent("Registration email with password :"+details.getPassword(), "text/html");
                 msg.setSentDate(new Date());
 
                 MimeBodyPart messageBodyPart = new MimeBodyPart();
-                messageBodyPart.setContent("You are Registered with password : "+details.getPassword(), "text/html");
+                messageBodyPart.setContent("You are Registered in NAGP with password : "+details.getPassword(), "text/html");
 
-                Multipart multipart = new MimeMultipart();
-                multipart.addBodyPart(messageBodyPart);
-                MimeBodyPart attachPart = new MimeBodyPart();
-
-        
-                multipart.addBodyPart(attachPart);
-                msg.setContent(multipart);
                 Transport.send(msg);   
              }
 

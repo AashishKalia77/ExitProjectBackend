@@ -26,6 +26,7 @@ public class ApplicantActivityRecordService {
 		if (applicantActivityRecord.getRecordId() == 0) {
 			List<ApplicantActivityRecord> list = applicantActivityRecordRepository.findAll();
 			int size = list.size();
+			System.out.println("@@@@@@@@@@@@@@@@@@@@@");
 			applicantActivityRecord.setRecordId(size + 1);
 			applicantActivityRecordRepository.save(applicantActivityRecord);
 		}

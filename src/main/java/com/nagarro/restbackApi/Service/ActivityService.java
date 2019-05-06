@@ -56,17 +56,17 @@ public class ActivityService {
 		Activity old=activityRepository.getOne(id);
 		if(old!=null) 
 		{
-			if(newActivity.getDescription()=="") {
-				old.setDescription(old.getDescription());
+			if(newActivity.getDescription()!=null && !newActivity.getDescription().equals("")) {
+				old.setDescription(newActivity.getDescription());
 			}
-			if(newActivity.getMaxAttempts()==0) {
-				old.setMaxAttempts(old.getMaxAttempts());
+			if(newActivity.getMaxAttempts()!=0) {
+				old.setMaxAttempts(newActivity.getMaxAttempts());
 			}
-			if(old.getQualifyPoints()==0) {
-				old.setQualifyPoints(old.getQualifyPoints());
+			if(newActivity.getQualifyPoints()!=0) {
+				old.setQualifyPoints(newActivity.getQualifyPoints());
 			}
-			if(old.getName()=="") {
-				old.setName(old.getName());
+			if(newActivity.getName()!=null && !newActivity.getName().equals("")) {
+				old.setName(newActivity.getName());
 			}
 			activityRepository.save(old);
 			

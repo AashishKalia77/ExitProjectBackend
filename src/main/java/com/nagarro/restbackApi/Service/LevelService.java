@@ -41,6 +41,7 @@ public class LevelService {
 	public void updateLevel(String id, Level newLevel) {
 		Level old = levelRepository.getOne(id);
 		if (old != null) {
+			
 			if (newLevel.getLevelName() != null && !newLevel.getLevelName().equals("")) {
 				old.setLevelName(newLevel.getLevelName());
 			}

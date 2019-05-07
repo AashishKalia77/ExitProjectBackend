@@ -49,10 +49,22 @@ public class ApplicantService {
 		ApplicantDetails old=applicantRepository.getOne(id);
 		if(old!=null)
 		{
-			old.setContactNumber(newapplicantDetails.getContactNumber());
-			old.setEmail(newapplicantDetails.getEmail());
-			old.setPassword(newapplicantDetails.getPassword());
-			old.setName(newapplicantDetails.getName());
+			if(newapplicantDetails.getContactNumber()!=0) {
+				old.setContactNumber(newapplicantDetails.getContactNumber());
+			}
+			
+			if(newapplicantDetails.getEmail()!=null && !newapplicantDetails.getEmail().equals("")){
+				old.setEmail(newapplicantDetails.getEmail());
+			}
+			
+			if(newapplicantDetails.getPassword()!=null && !newapplicantDetails.getPassword().equals("")) {
+				old.setPassword(newapplicantDetails.getPassword());
+			}
+			
+			if(newapplicantDetails.getName()!=null && !newapplicantDetails.getName().equals("")) {
+				old.setName(newapplicantDetails.getName());
+			}
+			
 			applicantRepository.save(old);
 		}
 		else

@@ -26,7 +26,6 @@ public class ApplicantActivityRecordService {
 		if (applicantActivityRecord.getRecordId() == 0) {
 			List<ApplicantActivityRecord> list = applicantActivityRecordRepository.findAll();
 			int size = list.size();
-			System.out.println("@@@@@@@@@@@@@@@@@@@@@");
 			applicantActivityRecord.setRecordId(size + 1);
 			applicantActivityRecordRepository.save(applicantActivityRecord);
 		}
@@ -122,11 +121,13 @@ public class ApplicantActivityRecordService {
 	 */
 	public void updateActivityStatus(double percentage_score, String status, int record_id) {
 		ApplicantActivityRecord fetched = applicantActivityRecordRepository.findById(record_id).get();
+		int count=fetched.getCount()+1;
+		System.out.println("Updated count is "+count);
 		double points_earned = 0;
 		if (status.equals("COMPLETED")) {
 			points_earned = (fetched.getActivity().getQualifyPoints() * percentage_score) / 100;
 		}
-		applicantActivityRecordRepository.updateActivityStatus(percentage_score, points_earned, status, record_id);
+		applicantActivityRecordRepository.updateActivityStatus(percentage_score, points_earned, status, record_id,count);
 
 	}
 	

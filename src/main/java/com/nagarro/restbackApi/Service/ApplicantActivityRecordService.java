@@ -134,10 +134,6 @@ public class ApplicantActivityRecordService {
 	/**
 	 * @returns total score by applicant Id
 	 */
-	/**
-	 * @param applicant_id
-	 * @return
-	 */
 	public double getApplicantScoreById(int applicant_id) {
 		if (applicantActivityRecordRepository.getHistoryofActivitiesOfApplicant(applicant_id).size() == 0) {
 			return 0;
